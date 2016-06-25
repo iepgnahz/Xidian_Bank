@@ -4,15 +4,17 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "assert": "^1.4.1",
     "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",
+    "jquery": "^3.0.0",
     "mongodb": "^2.1.18",
     "path": "^0.12.7"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
