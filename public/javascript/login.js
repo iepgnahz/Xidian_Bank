@@ -5,9 +5,9 @@ $(document).ready(() => {
 });
 
 function setCacheUserIdAction() {
-  $('#bankCardNumber').bind('input propertychange', () => {
-    localStorage.setItem('logedUser', $('#bankCardNumber').val());
-  });
+  // $('#bankCardNumber').bind('input propertychange', () => {
+  //   localStorage.setItem('logedUser', $('#bankCardNumber').val());
+  // });
 }
 
 function setLoginBtnAction() {
@@ -21,6 +21,8 @@ function setLoginBtnAction() {
         if (data.error) {
           alert(data.error);
         } else {
+          let cardNumber = $('#bankCardNumber').val();
+          localStorage.setItem('logedUser', cardNumber);
           window.location.href = "http://127.0.0.1:8080/main";
         }
       }

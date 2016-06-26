@@ -4,11 +4,19 @@
     <meta charset="utf-8">
     <script src="../javascript/lib/jquery.min.js" charset="utf-8"></script>
     <script src="../javascript/withdraw.js" charset="utf-8"></script>
+    <link href="../css/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/common.css" rel="stylesheet">
+    <link href="../css/withdraw.css" rel="stylesheet">
     <title>WithDraw</title>
   </head>
-  <body>
-    <h1>XXX银行ATM</h1>
-    <input type="text" placeholder="金额" id="amount">
-    <input type="button" value="确认">
+  <body class="container">
+    <div class="row col-xs-offset-4 col-xs-4 text-center">
+      <div class="page-header">
+        <h1>XXX银行ATM <small>取款</small></h1>
+      </div>
+      <input type="text" placeholder="金额" id="amount" class="form-control">
+      <input type="button" value="确 认" id="confirm" class="btn btn-info col-xs-offset-3 col-xs-2">
+      <input type="button" value="返回" id="return" class="btn btn-danger col-xs-offset-2 col-xs-2">
+    </div>
   </body>
 </html>

@@ -4,14 +4,23 @@
     <meta charset="utf-8">
     <script src="../javascript/lib/jquery.min.js" charset="utf-8"></script>
     <script src="../javascript/main.js" charset="utf-8"></script>
+    <link href="../css/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/common.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
     <title>Main</title>
   </head>
-  <body>
-    <h1>XXX银行ATM</h1>
-    <input type="button" id="withdraw" value="取款">
-    <input type="button" id="deposit" value="存款">
-    <input type="button" id="transfer" value="转账">
-    <input type="button" id="balance" value="余额">
-    <input type="button" id="return" value="退卡">
+  <body class="container">
+    <div class="row col-xs-offset-4 col-xs-4 text-center">
+      <div class="page-header">
+        <h1>XXX银行ATM</h1>
+      </div>
+      <div class="row">
+        <input type="button" id="withdraw" value="取 款" class="btn btn-primary col-xs-6 col-xs-offset-3">
+        <input type="button" id="deposit" value="存 款" class="btn btn-primary col-xs-6 col-xs-offset-3">
+        <input type="button" id="transfer" value="转 账" class="btn btn-primary col-xs-6 col-xs-offset-3">
+        <input type="button" id="balance" value="余 额" class="btn btn-primary col-xs-6 col-xs-offset-3">
+        <input type="button" id="return" value="退 卡" class="btn btn-danger col-xs-6 col-xs-offset-3">
+      </div>
+    </div>
   </body>
 </html>

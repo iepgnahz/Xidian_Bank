@@ -4,9 +4,21 @@
     <meta charset="utf-8">
     <script src="../javascript/lib/jquery.min.js" charset="utf-8"></script>
     <script src="../javascript/transfer.js" charset="utf-8"></script>
+    <link href="../css/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/common.css" rel="stylesheet">
     <title>Main</title>
   </head>
-  <body>
-    <h1>XXX银行ATM</h1>
+  <body class="container">
+    <div class="row col-xs-offset-4 col-xs-4 text-center">
+      <div class="page-header">
+        <h1>XXX银行ATM <small>转账</small></h1>
+      </div>
+      <div class="row">
+        <input type="text" placeholder="请输入对方银行卡号" id="bankcard" class="form-control">
+        <input type="text" placeholder="金额" id="amount" class="form-control">
+        <input type="button" value="确认" id="confirm" class="btn btn-primary col-xs-offset-3 col-xs-2">
+        <input type="button" value="返回" id="return" class="btn btn-danger col-xs-offset-2 col-xs-2">
+      </div>
+    </div>
   </body>
 </html>

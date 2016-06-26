@@ -27,7 +27,7 @@ function userLogin(login, callback) {
 
 function withdraw(record, callback) {
   database.connect((db) => {
-    db.collection('user').findOne({ userId: record.userId }, (err, doc) => {
+    db.collection('user').findOne({ bankCardNumber: record.bankCardNumber }, (err, doc) => {
       if (doc !== null) {
         if (parseFloat(record.amount) <= 0) {
           callback("请输入正确的数额！");
@@ -35,7 +35,7 @@ function withdraw(record, callback) {
           callback("余额不足！");
         } else {
           doc.balance = "" + (parseFloat(doc.balance) - parseFloat(record.amount));
-          db.collection('user').update({ userId: record.userId }, docToUser(doc));
+          db.collection('user').update({ bankCardNumber: record.bankCardNumber }, docToUser(doc));
           callback(null);
         }
       } else {
@@ -48,13 +48,13 @@ function withdraw(record, callback) {
 
 function deposit(record, callback) {
   database.connect((db) => {
-    db.collection('user').findOne({ userId: record.userId }, (err, doc) => {
+    db.collection('user').findOne({ bankCardNumber: record.bankCardNumber }, (err, doc) => {
       if (doc !== null) {
         if (parseFloat(record.amount) <= 0) {
           callback("请输入正确的数额！");
         } else {
           doc.balance = "" + (parseFloat(doc.balance) + parseFloat(record.amount));
-          db.collection('user').update({ userId: record.userId }, docToUser(doc));
+          db.collection('user').update({ bankCardNumber: record.bankCardNumber }, docToUser(doc));
           callback(null);
         }
       } else {
@@ -67,27 +67,32 @@ function deposit(record, callback) {
 
 function transfer(record, callback) {
   database.connect((db) => {
-    db.collection('user').findOne({ userId: record.from }, (err, doc) => {
+    db.collection('user').findOne({ bankCardNumber: record.from }, (err, doc) => {
       if (doc !== null) {
         if (parseFloat(record.amount) <= 0) {
           callback("请输入正确的数额！");
         } else {
-          doc.balance = "" + (parseFloat(doc.balance) - parseFloat(record.amount));
-          db.collection('user').update({ userId: record.from }, docToUser(doc));
-          db.collection('user').findOne({ userId: record.to }, (err, doc2) => {
-            if (doc2 !== null) {
-              doc2.balance = "" + (parseFloat(doc2.balance) + parseFloat(record.amount));
-              db.collection('user').update({ userId: record.to }, docToUser(doc2));
-              callback(null);
-            } else {
-              callback("存款失败！");
-            }
-          });
+          if (parseFloat(doc.balance) < parseFloat(record.amount)) {
+            callback("余额不足！");
+            db.close();
+          } else {
+            doc.balance = "" + (parseFloat(doc.balance) - parseFloat(record.amount));
+            db.collection('user').update({ bankCardNumber: record.from }, docToUser(doc));
+            db.collection('user').findOne({ bankCardNumber: record.to }, (err, doc2) => {
+              if (doc2 !== null) {
+                doc2.balance = "" + (parseFloat(doc2.balance) + parseFloat(record.amount));
+                db.collection('user').update({ bankCardNumber: record.to }, docToUser(doc2));
+                callback(null);
+              } else {
+                callback("转账失败，请确认转账账户存在！");
+              }
+              db.close();
+            });
+          }
         }
       } else {
         callback("转账失败！");
       }
-      db.close();
     });
   });
 }

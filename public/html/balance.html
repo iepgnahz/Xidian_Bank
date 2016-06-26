@@ -4,9 +4,19 @@
     <meta charset="utf-8">
     <script src="../javascript/lib/jquery.min.js" charset="utf-8"></script>
     <script src="../javascript/balance.js" charset="utf-8"></script>
+    <link href="../css/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/common.css" rel="stylesheet">
     <title>Main</title>
   </head>
-  <body>
-    <h1>XXX银行ATM</h1>
+  <body class="container">
+    <div class="row col-xs-offset-4 col-xs-4 text-center">
+      <div class="page-header">
+        <h1>XXX银行ATM <small>余额</small></h1>
+      </div>
+      <div class="jumbotron">
+        <p id="balance" class=""></p>
+      </div>
+      <input type="button" value="返回" id="return" class="btn btn-danger">
+    </div>
   </body>
 </html>
